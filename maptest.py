@@ -51,15 +51,15 @@ def main():
 			m.x+=1
 			p.p.update_listener_2d(m.x,m.y)
 			playstep()
-		if window.key_down(pygame.K_r) and walktime.elapsed>=walkspeed:
+		if window.key_down(pygame.K_r) and walktime.elapsed>=walkspeed and not jumping:
 			m.y+=1
 			walktime.restart()
-		if window.key_down(pygame.K_f) and walktime.elapsed>=walkspeed and m.y>0:
+		if window.key_down(pygame.K_f) and walktime.elapsed>=walkspeed and m.y>0 and not jumping and not falling and not rising:
 			m.y-=1
 			walktime.restart()
 			if m.y==0:
 				playstep()
-		if window.key_down(pygame.K_UP) and not jumping and not falling and not rising and not lowering:
+		if window.key_down(pygame.K_UP) and not jumping and not falling and not rising and not lowering and m.y<1:
 			p.p.play_stationary("s/jump.ogg",False)
 			jumping = True
 			rising = True
@@ -84,7 +84,7 @@ def main():
 			spawn_object()
 		if window.key_pressed(pygame.K_o):
 			output.speak(f"{str(len(objs))} objects")
-		if window.key_pressed(pygame.K_f): m.y-=1
+		if window.key_pressed(pygame.K_f) and m.y>0: m.y-=1
 		if window.key_pressed(pygame.K_ESCAPE):
 			sys.exit()
 def gravity():

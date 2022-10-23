@@ -8,7 +8,7 @@ class map:
 		self.miny=miny
 		self.maxx=maxx
 		self.maxy=maxy
-#	def zone(minx,maxx,miny,maxy,text):
+#	def zone(self,minx,maxx,miny,maxy,text):
 #		
 	def wall(self,wminx,wmaxx,wminy,wmaxy,wsound):
 		if self.x==wminx:
